@@ -7,6 +7,7 @@ import static com.voxeo.tropo.Key.EVENT;
 import static com.voxeo.tropo.Key.EXIT_TONE;
 import static com.voxeo.tropo.Key.FORMAT;
 import static com.voxeo.tropo.Key.FROM;
+import static com.voxeo.tropo.Key.MILLISECONDS;
 import static com.voxeo.tropo.Key.NAME;
 import static com.voxeo.tropo.Key.NETWORK;
 import static com.voxeo.tropo.Key.NEXT;
@@ -40,6 +41,7 @@ import com.voxeo.tropo.actions.RedirectAction;
 import com.voxeo.tropo.actions.SayAction;
 import com.voxeo.tropo.actions.StartRecordingAction;
 import com.voxeo.tropo.actions.TransferAction;
+import com.voxeo.tropo.actions.WaitAction;
 import com.voxeo.tropo.enums.Channel;
 import com.voxeo.tropo.enums.Format;
 import com.voxeo.tropo.enums.Network;
@@ -60,6 +62,8 @@ public class Tropo extends ArrayBackedJsonAction {
 	private ActionSupportHandler<TransferAction> transferActionSupportHandler = new ActionSupportHandler<TransferAction>(TransferAction.class);	
 	private ActionSupportHandler<CallAction> callActionSupportHandler = new ActionSupportHandler<CallAction>(CallAction.class);	
 	private ActionSupportHandler<MessageAction> messageActionSupportHandler = new ActionSupportHandler<MessageAction>(MessageAction.class);	
+	private ActionSupportHandler<WaitAction> waitActionSupportHandler = new ActionSupportHandler<WaitAction>(WaitAction.class);	
+	
 	
 	public Tropo() {
 		
@@ -230,6 +234,16 @@ public class Tropo extends ArrayBackedJsonAction {
 	public MessageAction message(String to, Network network, String from, Channel channel) {
 
 		return message(TO(to),NETWORK(network),FROM(from),CHANNEL(channel));
+	}
+	
+	public WaitAction wait(int milliseconds) {
+
+		return wait(MILLISECONDS(milliseconds));
+	}
+
+	public WaitAction wait(Key... keys) {
+
+		return waitActionSupportHandler.build(this, "tropo", keys);
 	}
 	
 	public TropoResult parse(String json) {
