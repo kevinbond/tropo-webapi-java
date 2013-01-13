@@ -40,7 +40,42 @@ public class Key {
 	public static Key INTERDIGIT_TIMEOUT(Integer value) {
 		
 		return createKey("interdigitTimeout", value);
-	}	
+	}
+	
+	public static Key SENSITIVITY(Integer value) {
+		
+		return createKey("sensitivity", value);
+	}
+	
+	public static Key COMPLETE_TIMEOUT(Integer value) {
+		
+		return createKey("speechCompleteTimeout", value);
+	}
+	
+	public static Key INCOMPLETE_TIMEOUT(Integer value) {
+		
+		return createKey("speechIncompleteTimeout", value);
+	}
+	
+	public static Key MILLISECONDS(Integer value) {
+		
+		return createKey("milliseconds", value);
+	}
+	
+	public static Key TRANSCRIPTION_ID(Integer value) {
+		
+		return createKey("transcriptionID", value);
+	}
+	
+	public static Key TRANSCRIPTION_EMAIL_FORMAT(Integer value) {
+		
+		return createKey("transcriptionEmailFormat", value);
+	}
+	
+	public static Key OUT_URI(Integer value) {
+		
+		return createKey("transcriptionOutURI", value);
+	}
 	
 	public static Key CHOICES(String value) {
 		
